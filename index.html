@@ -8,20 +8,11 @@
         body{
           display: absolute ;
         margin:0;
-          box-sizing: border-box;
-          overflow: hidden;
-
         padding: 0;
-          width: 100%;
-
+        
          background: linear-gradient(-45deg, rgba(247, 71, 10, 0.59) 0%, rgba(51, 227, 210, 0.57) 25%, rgba(251, 8, 8, 0.8) 50%, rgba(107, 51, 211, 0.6) 75%, rgba(105, 0, 255, 0.57) 100%) no-repeat;
          background-size: 500%;
-          height: 100vh;
-          overflow: hidden;
-          position: relative;
          background-attachment: fixed;
-          color: rgb(32, 3, 3);
-          font-family: 'Courier New', Courier, monospace;
          animation: gradientAnim 6s ease infinite;
        }
        
@@ -43,12 +34,22 @@
          }
        }
        
-        
-        
+        /*
+        display: absolute ;
+       
+         animation:change 15s linear infinite;
+           animation-fill-mode:forwards;}
+       @keyframes change{    
+       20%{background-color:#44241CE8;}
+       40%{background-color:#17343AA3;}
+       60%{background-color:#2D193DA8;}
+       80%{background-color:#171308B5;}
+       100%{background-color:#1F0C1AC2;}
+       }
+       */
         
        
        .heart {
-          position: absolute;
          position: fixed;
          top: 0;
          right: 0;
@@ -99,27 +100,13 @@ margin-left: 0%;
 
        
            #countdown {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                text-align: center;
-                font-family: 'Courier New', Courier, monospace;
-                color: white;
-                font-size: 60px;
-                font-weight: bold;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-                color: white;
+               font-weight: bolder;
+               
                text-align: center;
-                display: flex;
                 align-content: center;
                 font-size:60px;
-                flex-direction: column;
            }
            h1 {
-
-                font-size: 80px;
-                color: white;
                color:#110404d1; 
                text-shadow :5px 10px #847f7fd4;
                
@@ -127,20 +114,12 @@ margin-left: 0%;
            
            
            table {
-                margin: 0 auto;
-                border-collapse: collapse;
                border-radius: 200px;
                margin-bottom: 80px;
-            
-             
+           
            }
            td {
-                padding: 20px;
-
-                border-radius: 10px;
-             
                background-color: rgba(255,182,70,1);
-                color: black;
                border-radius: 100px;
                padding: 60px;
                box-shadow:7px 7px 13px white;
@@ -148,7 +127,6 @@ margin-left: 0%;
            }
        
            a {
-                text-decoration: none;
                font-size: 80px;
                background-color: black;
                padding: 50px;
@@ -156,14 +134,11 @@ margin-left: 0%;
                font-weight: bolder;
                text-decoration: underline;
                color: white;
-                box-shadow: 10px 10px 20px white;
                color: red;
                box-shadow:15px 15px 23px white;
        
            }
            i {
-               
-                font-size: 80px;
                color: red;
                width: 205px;
            }
@@ -174,10 +149,10 @@ margin-left: 0%;
 
 
          <div id="countdown" align="center"> 
-          <h1>Birthday Countdown</h1>
+          <h1>Birthday Countdown</h1> 
           <table align="center"> 
            <tbody> 
-            <tr> 
+           <tr> 
              <td id="days"></td> 
              <td id="hours"></td> 
              <td id="minutes"></td> 
@@ -196,12 +171,12 @@ margin-left: 0%;
          
          <div class="here">
 
-          <h2></h2>
+<h2>  Click Here</h2>
 
 
          </div>
         
-        
+       
        <script type="text/javascript" id="dcoder_script">var eventDate=new Date("may 05, 2025, 00:00:00").getTime();
        
            // Creating an interval function 
@@ -235,7 +210,7 @@ margin-left: 0%;
           document.getElementById('seconds').textContent=s;
        
            },1000);
-        </script> 
+        </script>
         
         
         
@@ -261,6 +236,15 @@ margin-left: 0%;
        setInterval(createHeart,100);
            
          </script>
+           
+
+
+
+
+
+
+
+
          <audio id="song" src=" https://www.dropbox.com/scl/fi/o776rdf8f3n5cz27ik1yg/Ghost-Waltz-yt.savetube.me.mp3?rlkey=ut6eessxjq58e6em9q5vzzjwn&st=v9uf7a1s&dl=1"
          autoplay style="display:none;"></audio>
          
@@ -276,16 +260,21 @@ margin-left: 0%;
      
      </script>
      
+                     
 
-<!---
+
+        
+
+<!-- 
+
 <script>
 
 
   alert("Click On Sreen");
 
 
-</script> 
--->
+</script> -->
+
 
 
 
