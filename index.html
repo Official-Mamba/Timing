@@ -9,150 +9,41 @@
          <title>Timing By Mamba</title> 
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <style type="text/css" id="dcoder_stylesheet">
+        :root{--bg1:linear-gradient(-45deg, rgba(247,71,10,0.59) 0%, rgba(51,227,210,0.57) 25%, rgba(251,8,8,0.8) 50%, rgba(107,51,211,0.6) 75%, rgba(105,0,255,0.57) 100%);--accent:#ff6b6b}
+        html,body{height:100%}
         body{
-        font-family: 'Sofia', sans-serif;
-        margin:0;
-        padding: 0;
-     
-         background: linear-gradient(-45deg, rgba(247, 71, 10, 0.59) 0%, rgba(51, 227, 210, 0.57) 25%, rgba(251, 8, 8, 0.8) 50%, rgba(107, 51, 211, 0.6) 75%, rgba(105, 0, 255, 0.57) 100%) no-repeat;
-         background-size: 400%;
-         background-attachment: fixed;
-         animation: gradientAnim 6s ease infinite;
-       }
-       
-       @keyframes gradientAnim {
-         0% {
-           background-position: 0% 25%;
-         }
-         25% {
-           background-position: 25% 50%;
-         }
-         50% {
-           background-position: 50% 75%;
-         }
-         75% {
-           background-position: 75% 100%;
-         }
-         100% {
-           background-position: 0% 25%;
-         }
-       }
-       
-        /*
-        display: absolute ;
-       
-         animation:change 15s linear infinite;
-           animation-fill-mode:forwards;}
-       @keyframes change{    
-       20%{background-color:#44241CE8;}
-       40%{background-color:#17343AA3;}
-       60%{background-color:#2D193DA8;}
-       80%{background-color:#171308B5;}
-       100%{background-color:#1F0C1AC2;}
-       }
-       */
-        
-       
-       .heart {
-         position: fixed;
-         top: 0;
-         right: 0;
-         width:3px ;
-         height:3px;
-         color: white;
-         font-family: cursive;
-         font-size: 2rem;
-         transform: translateY(0);
-         text-shadow: 
-            0 0 8px #FFFFFF, 
-            0 0 8px #FFFFFF, 
-            0 0 8px #FFFFFF, 
-            0 0 4px #FFFFFF, 
-            0 0 4px #FFFDFD, 
-            0 0 6px #FFFFFF, 
-            0 0 6px #FFFEFE;
-         animation: fall 5s linear forwards;
-       }
-       
-       @keyframes fall {
-         from {
-           transform: translateX(0) translateY(0);
-         }
-         to {
-           transform: translateX(-100vw) translateY(100vh);
-         }
-       }
-       
-       
-   h2{
-margin-left: 0%;
+          font-family: 'Sofia', sans-serif;
+          margin:0;padding:0;
+          min-height:100vh;
+          display:flex;align-items:center;justify-content:center;
+          background:var(--bg1) no-repeat center/400% fixed;
+          animation:gradientAnim 8s ease infinite;
+          -webkit-font-smoothing:antialiased;
+        }
+        @keyframes gradientAnim{0%{background-position:0% 25%}50%{background-position:100% 75%}100%{background-position:0% 25%}}
 
-  
-    font-size: 90px;
+        /* center card */
+        #countdown{font-weight:800;text-align:center;width:100%;max-width:1000px;margin:12px;padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));box-shadow:0 8px 32px rgba(0,0,0,0.25)}
+        h1{color:#110404d1;text-shadow:5px 10px #847f7fd4;margin:0 0 8px;font-size:clamp(20px,4vw,40px)}
 
-}
+        table{width:100%;max-width:760px;margin:18px auto;border-collapse:separate}
+        td{background-color:rgba(255,182,70,0.95);border-radius:18px;padding:clamp(18px,4vw,36px);margin:10px;font-weight:800;color:black;font-size:clamp(18px,4.6vw,36px);box-shadow:0 6px 18px rgba(0,0,0,0.12);text-align:center;vertical-align:middle}
 
-  .here{
-    background-color: aqua;
-    width: 35px;
-   margin-left: 40%;
+        h2{margin:0;font-size:clamp(28px,6vw,90px);text-align:center}
+        .here{background-color:rgba(255,255,255,0.06);padding:8px 14px;border-radius:8px;display:inline-block;margin:12px auto;text-align:center}
 
-  }
+        .heart{position:fixed;width:3px;height:3px;color:white;font-family:cursive;font-size:2rem;transform:translateY(0);text-shadow:0 0 8px #fff;animation:fall 5s linear forwards;pointer-events:none;user-select:none;z-index:2}
+        @keyframes fall{from{transform:translateX(0) translateY(0);opacity:1}to{transform:translateX(-100vw) translateY(100vh);opacity:0}}
 
+        a{font-size:16px;background-color:transparent;padding:8px 12px;border-radius:8px;font-weight:700;text-decoration:none;color:var(--accent)}
+        i{color:red;width:205px}
 
+        @media (max-width:520px){
+          #countdown{padding:18px;border-radius:12px;margin:12px}
+          td{padding:14px;font-size:clamp(14px,7vw,24px)}
+        }
 
-
-       
-           #countdown {
-               font-weight: bolder;
-               
-               text-align: center;
-                align-content: center;
-                font-size:60px;
-           }
-           h1 {
-               color:#110404d1; 
-               text-shadow :5px 10px #847f7fd4;
-               
-           }
-           
-           
-           table {
-               border-radius: 100px;
-               margin-bottom: 80px;
-           
-           }
-           td {
-               background-color: rgba(255,182,70,1);
-               border-radius: 90px;
-               padding: 60px;
-               margin:20px;
-               font-weight:bolder;
-               color:black;
-               fornt-size:35px;
-               box-shadow:7px 7px 13px white;
-               
-           }
-       
-           a {
-               font-size: 20px;
-               background-color: black;
-               padding: 50px;
-               border-radius: 50px;
-               font-weight: bolder;
-               text-decoration: underline;
-               color: white;
-               color: red;
-               box-shadow:15px 15px 23px white;
-       
-           }
-           i {
-               color: red;
-               width: 205px;
-           }
-           
-             
-             </style></head> 
+        </style></head> 
         <body> 
 
 
