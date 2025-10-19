@@ -26,11 +26,24 @@
         #countdown{font-weight:800;text-align:center;width:100%;max-width:1000px;margin:12px;padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));box-shadow:0 8px 32px rgba(0,0,0,0.25)}
         h1{color:#110404d1;text-shadow:5px 10px #847f7fd4;margin:0 0 8px;font-size:clamp(20px,4vw,40px)}
 
-        table{width:100%;max-width:760px;margin:18px auto;border-collapse:separate}
-        td{background-color:rgba(255,182,70,0.95);border-radius:18px;padding:clamp(18px,4vw,36px);margin:10px;font-weight:800;color:black;font-size:clamp(18px,4.6vw,36px);box-shadow:0 6px 18px rgba(0,0,0,0.12);text-align:center;vertical-align:middle}
+  table{display:none}
+  .cards{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:stretch;margin-top:18px}
+  .card{flex:1 1 160px;min-width:120px;max-width:220px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .18s ease,box-shadow .18s ease}
+  .card:focus-within,.card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.16)}
+  .num{font-weight:900;font-size:clamp(26px,6vw,52px);color:#111;margin-bottom:6px}
+  .label{font-size:14px;color:#444}
 
-        h2{margin:0;font-size:clamp(28px,6vw,90px);text-align:center}
-        .here{background-color:rgba(255,255,255,0.06);padding:8px 14px;border-radius:8px;display:inline-block;margin:12px auto;text-align:center}
+  h2{margin:0;font-size:clamp(18px,4vw,48px);text-align:center}
+  .here{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background-color:rgba(0,0,0,0.35);padding:10px 18px;border-radius:999px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.35);z-index:9999;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+  .here::before{content:"";position:absolute;inset:0;border-radius:999px;box-shadow:0 0 18px rgba(255,107,107,0.8),0 0 36px rgba(255,107,107,0.25);opacity:0;transform:scale(0.9);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+  .here:hover{transform:translateX(-50%) scale(1.03)}
+  .here:active{transform:translateX(-50%) scale(0.98)}
+  .here:focus-visible{outline:2px solid rgba(255,255,255,0.18);outline-offset:4px}
+  .here.glow-on::before{opacity:1;transform:scale(1)}
+
+  @media (prefers-reduced-motion: reduce){
+    .here,.here::before{transition:none;animation:none}
+  }
 
         .heart{position:fixed;width:3px;height:3px;color:white;font-family:cursive;font-size:2rem;transform:translateY(0);text-shadow:0 0 8px #fff;animation:fall 5s linear forwards;pointer-events:none;user-select:none;z-index:2}
         @keyframes fall{from{transform:translateX(0) translateY(0);opacity:1}to{transform:translateX(-100vw) translateY(100vh);opacity:0}}
@@ -41,42 +54,30 @@
         @media (max-width:520px){
           #countdown{padding:18px;border-radius:12px;margin:12px}
           td{padding:14px;font-size:clamp(14px,7vw,24px)}
+          .here{bottom:12px;padding:10px 14px;font-size:14px}
         }
 
         </style></head> 
         <body> 
 
 
-         <div id="countdown" align="center"> 
+         <div id="countdown" aria-live="polite"> 
           <h1>Birthday Countdown</h1> 
-          <table align="center"> 
-           <tbody> 
-           <tr> 
-             <td id="days"></td> 
-             <td id="hours"></td> 
-             <td id="minutes"></td> 
-             <td id="seconds"></td> 
-            </tr> 
-            <tr> 
-             <td>Days</td> 
-             <td>Hours</td> 
-             <td>Minutes</td> 
-             <td>Seconds</td> 
-            </tr>  
-           </tbody> 
-          </table> 
-         </div> 
+          <div class="cards" role="group" aria-label="Time remaining">
+            <div class="card"><div class="num" id="days">0</div><div class="label">Days</div></div>
+            <div class="card"><div class="num" id="hours">00</div><div class="label">Hours</div></div>
+            <div class="card"><div class="num" id="minutes">00</div><div class="label">Minutes</div></div>
+            <div class="card"><div class="num" id="seconds">00</div><div class="label">Seconds</div></div>
+          </div>
+         </div>
          
          
-         <div class="here">
-
-<h2>  Click Here</h2>
-
-
+         <div class="here" role="button" tabindex="0" aria-pressed="false" aria-label="Play music and highlight">
+          <h2>Click Here</h2>
          </div>
         
        
-       <script type="text/javascript" id="dcoder_script">var eventDate=new Date("nov 04, 2025, 00:00:00").getTime();
+  <script type="text/javascript" id="dcoder_script">var eventDate=new Date("nov 04, 2025, 00:00:00").getTime();
        
            // Creating an interval function 
        
@@ -148,16 +149,29 @@
          autoplay style="display:none;"></audio>
          
          <script>
-           window.addEventListener('click', function () {
-             var audio = document.getElementById("song");
-             audio.play();
-         
-
-
-       });
-       
-     
-     </script>
+           // auto-play attempt on user gesture handled elsewhere; provide a play-only handler
+           (function(){
+             const audio = document.getElementById('song');
+             const here = document.querySelector('.here');
+             function setPressed(v){ here.setAttribute('aria-pressed', v?'true':'false'); }
+             function playOnly(){
+               if(audio.paused){
+                 audio.play().catch(()=>{});
+                 here.classList.add('glow-on');
+                 setPressed(true);
+               } else {
+                 // already playing - give brief feedback
+                 here.classList.add('glow-on');
+                 setTimeout(()=>{ if(!audio.paused) here.classList.remove('glow-on'); }, 600);
+               }
+             }
+             here.addEventListener('click', playOnly);
+             here.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playOnly(); } });
+             // reflect external changes to audio state
+             audio.addEventListener('play', ()=> { here.classList.add('glow-on'); setPressed(true); });
+             audio.addEventListener('pause', ()=> { here.classList.remove('glow-on'); setPressed(false); });
+           })();
+       </script>
      
                      
 
